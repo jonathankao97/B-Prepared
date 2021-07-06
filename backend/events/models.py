@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.db.models.fields import DateTimeField
 from django.utils import timezone
 
 User = get_user_model()
@@ -9,6 +8,9 @@ User = get_user_model()
 class Event(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
     date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Event({self.name}, {self.date})"
 
 
 class Task(models.Model):
@@ -21,12 +23,10 @@ class Task(models.Model):
 
     description = models.CharField(max_length=50, blank=False, null=False)
     status = models.BooleanField(default=False)
+    due_date = models.DateTimeField(blank=True, null=True)
 
-    def get_event(self):
-        if self.event:
-            return self.event.name
-        else:
-            return ""
+    def __str__(self):
+        return f"Task({self.assigned_to}, {self.assigned_by})"
 
 
 class Announcement(models.Model):
@@ -37,13 +37,7 @@ class Announcement(models.Model):
     sent_to = models.ManyToManyField(User, related_name='sent_to')
 
     description = models.TextField(max_length=255, blank=False, null=False)
-    date = models.DateTimeField(default=timezone.now)
+    sent_date = models.DateTimeField(default=timezone.now)
 
-    def get_sent_list(self):
-        return " ".join([p.username for p in self.sent_to.all()])
-
-    def get_event(self):
-        if self.event:
-            return self.event.name
-        else:
-            return ""
+    def __str__(self):
+        return f"Announcement({self.sent_by}, {self.date})"

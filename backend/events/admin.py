@@ -3,20 +3,19 @@ from .models import Event, Task, Announcement
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date')
-    search_fields = ('name', 'date')
+    list_display = ('pk', 'name', 'date')
+    search_fields = ('pk', 'name', 'date')
     list_per_page = 25
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('description', 'assigned_by',
-                    'assigned_to', 'get_event', 'status')
+    list_display = ('pk', 'description', 'event', 'assigned_by',
+                    'assigned_to', 'status', 'due_date')
     list_per_page = 25
 
 
 class AnnouncementAdmin(admin.ModelAdmin):
-    list_display = ('description', 'date', 'sent_by',
-                    'get_sent_list', 'get_event')
+    list_display = ('pk', 'description', 'event', 'sent_by', 'sent_date')
     list_per_page = 25
 
 
