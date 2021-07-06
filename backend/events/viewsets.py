@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from rest_framework import viewsets, serializers
+from rest_framework import viewsets
 from .models import Event, Task, Announcement
 from .serializers import EventSerializer, TaskSerializer, AnnouncementSerializer
 

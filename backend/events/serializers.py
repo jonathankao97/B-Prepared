@@ -5,18 +5,18 @@ from .models import Event, Task, Announcement
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'name', 'date')
+        fields = ('pk', 'name', 'date')
 
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ('id', 'event', 'assigned_by',
-                  'assigned_to', 'description', 'status')
+        fields = ('pk', 'event', 'assigned_by',
+                  'assigned_to', 'description', 'status', 'due_date')
 
 
 class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
-        fields = ('id', 'event', 'sent_by', 'sent_to',
-                  'description', 'date')
+        fields = ('pk', 'event', 'sent_by', 'sent_to',
+                  'description', 'sent_date')
