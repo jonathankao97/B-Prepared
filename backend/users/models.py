@@ -3,16 +3,17 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils import timezone
+from django.contrib.auth.password_validation import validate_password
 
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def create_user(self, email, first_name, last_name, password=None):
+    def create_user(self, email, first_name, last_name, password):
         user = self.model(email=email, first_name=first_name,
                           last_name=last_name)
-        if password is not None:
-            user.set_password(password)
+        validate_password(password)
+        user.set_password(password)
         user.save()
         return user
 
