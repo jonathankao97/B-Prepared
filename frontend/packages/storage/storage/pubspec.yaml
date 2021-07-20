@@ -1,5 +1,5 @@
 name: storage
-description: A Key/Value Storage Client for Dart.
+description: A Key/Value Storage Client for Dart
 publish_to: none
 
 environment:
