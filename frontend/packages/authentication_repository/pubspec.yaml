@@ -8,3 +8,9 @@ environment:
 dependencies:
   backend_client:
     path: ../backend_client  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.1.4
+  
