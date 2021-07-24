@@ -37,7 +37,7 @@ void main() {
 
     test('signIn correctly calls _backendClient.authenticate()', () async {
       when(() => backendClient.authenticate(
-            email: any(named: "username"),
+            email: any(named: "email"),
             password: any(named: "password"),
           )).thenAnswer((_) async => null);
       final authenticationRepository = AuthenticationRepository(backendClient);
