@@ -37,7 +37,7 @@ void main() {
 
     test('signIn correctly calls _backendClient.authenticate()', () async {
       when(() => backendClient.authenticate(
-            username: any(named: "username"),
+            email: any(named: "email"),
             password: any(named: "password"),
           )).thenAnswer((_) async => null);
       final authenticationRepository = AuthenticationRepository(backendClient);
@@ -48,7 +48,7 @@ void main() {
         password: password,
       );
       verify(() => backendClient.authenticate(
-            username: username,
+            email: username,
             password: password,
           )).called(1);
     });

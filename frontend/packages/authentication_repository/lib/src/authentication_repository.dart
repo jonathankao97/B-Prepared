@@ -30,7 +30,7 @@ class AuthenticationRepository {
     required String password,
   }) async {
     await _backendClient.authenticate(
-      username: username,
+      email: username,
       password: password,
     );
   }
