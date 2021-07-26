@@ -1,16 +1,16 @@
-from rest_framework import viewsets
-from .models import Event, Task, Announcement
-from .serializers import EventSerializer, TaskSerializer, AnnouncementSerializer
-
-
-class EventView(viewsets.ModelViewSet):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
+from rest_framework import serializers, viewsets
+from .models import Task, UserTask, Announcement
+from .serializers import TaskSerializer, UserTasksSerializer, AnnouncementSerializer
 
 
 class TaskView(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
+
+class UserTasksView(viewsets.ModelViewSet):
+    queryset = UserTask.objects.all()
+    serializer_class = UserTasksSerializer
 
 
 class AnnouncementView(viewsets.ModelViewSet):
