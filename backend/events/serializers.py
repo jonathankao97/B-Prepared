@@ -11,7 +11,7 @@ class TaskSerializer(serializers.ModelSerializer):
 class UserTasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserTask
-        fields = ('pk', 'task', 'user', 'status')
+        fields = ('pk', 'task', 'assigned_to', 'status')
 
 
 class AnnouncementSerializer(serializers.ModelSerializer):

@@ -9,7 +9,7 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 class UserTasksAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'task', 'user', 'status')
+    list_display = ('pk', 'task', 'assigned_to', 'status')
     list_per_page = 25
 
 
