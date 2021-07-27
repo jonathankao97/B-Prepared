@@ -1,6 +1,6 @@
-from rest_framework import serializers, viewsets
+from rest_framework import viewsets
 from .models import Task, UserTask, Announcement
-from .serializers import TaskSerializer, UserTasksSerializer, AnnouncementSerializer
+from .serializers import TaskSerializer, UserTaskSerializer, AnnouncementSerializer
 
 
 class TaskView(viewsets.ModelViewSet):
@@ -8,9 +8,9 @@ class TaskView(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
 
 
-class UserTasksView(viewsets.ModelViewSet):
+class UserTaskView(viewsets.ModelViewSet):
     queryset = UserTask.objects.all()
-    serializer_class = UserTasksSerializer
+    serializer_class = UserTaskSerializer
 
 
 class AnnouncementView(viewsets.ModelViewSet):
