@@ -8,6 +8,8 @@ environment:
 dependencies:
   backend_client:
     path: ../backend_client  
+  user_repository:
+    path: ../user_repository
 
 dev_dependencies:
   flutter_test:
