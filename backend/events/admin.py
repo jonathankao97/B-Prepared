@@ -8,7 +8,7 @@ class TaskAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
-class UserTasksAdmin(admin.ModelAdmin):
+class UserTaskAdmin(admin.ModelAdmin):
     list_display = ('pk', 'task', 'assigned_to', 'status')
     list_per_page = 25
 
@@ -20,5 +20,5 @@ class AnnouncementAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Task, TaskAdmin)
-admin.site.register(UserTask, UserTasksAdmin)
+admin.site.register(UserTask, UserTaskAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)
