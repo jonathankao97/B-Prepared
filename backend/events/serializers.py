@@ -1,22 +1,21 @@
 from rest_framework import serializers
-from .models import Event, Task, Announcement
-
-
-class EventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = ('pk', 'name', 'date')
+from .models import Task, UserTask, Announcement
 
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ('pk', 'event', 'assigned_by',
-                  'assigned_to', 'description', 'status', 'due_date')
+        fields = ('pk', 'assigned_by', 'title', 'description', 'due_date')
+
+
+class UserTasksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserTask
+        fields = ('pk', 'task', 'assigned_to', 'status')
 
 
 class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
-        fields = ('pk', 'event', 'sent_by', 'sent_to',
+        fields = ('pk', 'sent_by', 'sent_to', 'title',
                   'description', 'sent_date')
