@@ -1,6 +1,7 @@
 import 'package:backend_client/backend_client.dart';
+import 'package:equatable/equatable.dart';
 
-class User {
+class User extends Equatable {
   final int pk;
   final String email;
   final String firstName;
@@ -28,4 +29,7 @@ class User {
       lastName: userResponse.last_name,
     );
   }
+
+  @override
+  List<Object> get props => [pk, email, firstName, lastName];
 }

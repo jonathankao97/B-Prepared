@@ -8,4 +8,5 @@ environment:
 dependencies:
   backend_client:
     path: ../backend_client
+  equatable: ^2.0.0
 
