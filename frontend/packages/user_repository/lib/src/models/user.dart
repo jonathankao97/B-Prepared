@@ -1,3 +1,5 @@
+import 'package:backend_client/backend_client.dart';
+
 class User {
   final int pk;
   final String email;
@@ -17,4 +19,8 @@ class User {
     firstName: '',
     lastName: '',
   );
+
+  static User fromUserResponse(UserResponse userResponse) {
+    return User.anonymous;
+  }
 }
