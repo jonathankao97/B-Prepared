@@ -21,6 +21,11 @@ class User {
   );
 
   static User fromUserResponse(UserResponse userResponse) {
-    return User.anonymous;
+    return User(
+      pk: userResponse.pk,
+      email: userResponse.email,
+      firstName: userResponse.first_name,
+      lastName: userResponse.last_name,
+    );
   }
 }
