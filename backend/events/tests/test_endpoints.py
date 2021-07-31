@@ -596,7 +596,7 @@ class TestUserTaskCreateEndpoint(APITestCase):
 
         data = {
             'task': test_task.pk,
-            'user': test_user.pk,
+            'assigned_to': test_user.pk,
             'status': False
         }
 
@@ -606,7 +606,7 @@ class TestUserTaskCreateEndpoint(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(user_task.task.pk, data['task'])
-        self.assertEqual(user_task.user.pk, data['user'])
+        self.assertEqual(user_task.assigned_to.pk, data['assigned_to'])
         self.assertEqual(user_task.status, data['status'])
 
     def test_create_user_task_with_missing_task(self):
@@ -617,7 +617,7 @@ class TestUserTaskCreateEndpoint(APITestCase):
         test_user = baker.make(User)
 
         data = {
-            'user': test_user.pk,
+            'assigned_to': test_user.pk,
             'status': False
         }
 
@@ -625,11 +625,11 @@ class TestUserTaskCreateEndpoint(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertRaises(UserTask.DoesNotExist,
-                          lambda: UserTask.objects.get(user=data['user']))
+                          lambda: UserTask.objects.get(assigned_to=data['assigned_to']))
 
-    def test_create_UserTask_with_missing_user(self):
+    def test_create_UserTask_with_missing_assigned_to(self):
         """
-        Ensure error codes when missing user
+        Ensure error codes when missing assigned_to
         """
 
         test_task = baker.make(Task)
@@ -654,7 +654,7 @@ class TestUserTaskCreateEndpoint(APITestCase):
         test_task = baker.make(Task)
 
         data = {
-            'user': test_user.pk,
+            'assigned_to': test_user.pk,
             'task': test_task.pk
         }
 
@@ -670,7 +670,7 @@ class TestUserTaskCreateEndpoint(APITestCase):
 
         data = {
             'task': '',
-            'user': test_user.pk,
+            'assigned_to': test_user.pk,
             'status': False
         }
 
@@ -678,9 +678,9 @@ class TestUserTaskCreateEndpoint(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertRaises(UserTask.DoesNotExist,
-                          lambda: UserTask.objects.get(user=data['user']))
+                          lambda: UserTask.objects.get(assigned_to=data['assigned_to']))
 
-    def test_create_UserTask_with_invalid_user(self):
+    def test_create_UserTask_with_invalid_assigned_to(self):
         """
         Ensure error codes when invalid assigned_by
         """
@@ -689,7 +689,7 @@ class TestUserTaskCreateEndpoint(APITestCase):
 
         data = {
             'task': test_task.pk,
-            'user': '',
+            'assigned_to': '',
             'status': False
         }
 
@@ -709,7 +709,7 @@ class TestUserTaskCreateEndpoint(APITestCase):
 
         data = {
             'task': test_task.pk,
-            'user': test_user.pk,
+            'assigned_to': test_user.pk,
             'status': ''
         }
 
@@ -735,7 +735,7 @@ class TestUserTaskRetrieveEndpoint(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
             set(response.data.keys()),
-            {'pk', 'task', 'user', 'status'})
+            {'pk', 'task', 'assigned_to', 'status'})
 
     def test_retrieve_user_task_not_found(self):
         """
@@ -776,7 +776,7 @@ class TestUserTaskUpdateEndpoint(APITestCase):
 
         data = {
             'task': new_task.pk,
-            'user': new_user.pk,
+            'assigned_to': new_user.pk,
             'status': True
         }
 

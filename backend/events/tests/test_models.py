@@ -56,7 +56,7 @@ class UserTaskModeManagerTest(TestCase):
     def test_object_manager_create_UserTasks(self):
         test_userTask = UserTask.objects.create(
             task=baker.make(Task),
-            user=baker.make(User),
+            assigned_to=baker.make(User),
             status=False,
         )
         test_userTask_db = UserTask.objects.get(
